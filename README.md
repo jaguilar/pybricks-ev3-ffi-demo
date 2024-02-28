@@ -44,6 +44,12 @@ micropython, this suggests that writing in C can give you approximately an
 additional 4x speedup compared to Viper. Probably the exact speedup depends on the
 project.
 
+## Next Steps
+
+* C++?
+* Statically link the shared libary to avoid deps?
+* Optimizer flags?
+
 ## Conclusion
 
 I hope this is helpful to anyone who wants to use C to speed up their CPU-intensive
