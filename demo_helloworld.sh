@@ -3,8 +3,8 @@
 # This program demonstrates building and running a hello, world binary
 # on the docker container.
 
-. ./common.sh
+. common.sh
 
-cmake --build .
-runc make all
-runc "/src/$BUILD_DIR/bin/hello_world"
+container_cmake --configure ..
+container_make all
+docker exec --tty "${CONTAINER_NAME}" $BUILD_DIR/bin/hello_world

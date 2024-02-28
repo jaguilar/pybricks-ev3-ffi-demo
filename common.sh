@@ -19,22 +19,20 @@ fi
 export IMAGE_NAME="ghcr.io/pybricks/pybricks-micropython/pybricks-ev3dev-armel:latest"
 export CONTAINER_NAME="ev3build"
 
+
+# Runs a command inside the container.
+docker exec -w /src -it "${CONTAINER_NAME}" bash -c "find . | grep ev3build | xargs rm -rf"
+
+# Note: BUILD_DIR is in the docker container, not the host.
 export BUILD_DIR="/src/$(mktemp -d ev3build.XXXXXX)"
 echo "Building in $BUILD_DIR"
 
-# Runs a command inside the container.
-runc () {
-    docker exec --tty $CONTAINER_NAME "$@"
+container_cmake () {
+    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" cmake "$@"
 }
 
-runc rm -rf "/src/ev3build*"
-
-cmake () {
-    runc -w "/src/${BUILD_DIR}" --cmake -DCMAKE_TOOLCHAIN_FILE=/home/compiler/toolchain-armel.cmake ../ "$@"
-}
-
-make () {
-    runc -w "/src/${BUILD_DIR}" make "$@"
+container_make () {
+    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" make "$@"
 }
 
 # If we're running in WSL2:
