@@ -24,11 +24,13 @@ export CONTAINER_NAME="ev3build"
 docker exec -w /src -it "${CONTAINER_NAME}" bash -c "find . | grep ev3build | xargs rm -rf"
 
 # Note: BUILD_DIR is in the docker container, not the host.
-export BUILD_DIR="/src/$(mktemp -d ev3build.XXXXXX)"
+export BUILD_DIRNAME="$(mktemp -d ev3build.XXXXXX)"
+export BUILD_LOCAL="$(pwd)/${BUILD_DIRNAME}"
+export BUILD_DIR="/src/${BUILD_DIRNAME}"
 echo "Building in $BUILD_DIR"
 
 container_cmake () {
-    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" cmake "$@"
+    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" cmake -DCMAKE_TOOLCHAIN_FILE=/home/compiler/toolchain-armel.cmake "$@"
 }
 
 container_make () {
