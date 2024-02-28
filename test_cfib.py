@@ -4,7 +4,7 @@ from pybricks.tools import StopWatch
 
 import ffi
 
-libfib = ffi.open("./libfib.so")  # Note: otherwise will search the library path and find nothing.
+libfib = ffi.open("./libfib.so")  # Note: use "./" otherwise it will search the library path and find nothing.
 fib = libfib.func("l", "fib", "l")
 
 sw = StopWatch()
