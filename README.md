@@ -32,8 +32,10 @@ This project is not supported. I've only tried it on Ubuntu Linux in WSL2.
 
 On my EV3 brick:
 
+
+
 | Implementation  | Time  |
----------------------------
+|-----------------|-------|
 | Python          | 155ms |
 | C               |  12ms |
 
