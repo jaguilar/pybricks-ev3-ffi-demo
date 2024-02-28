@@ -2,7 +2,7 @@
 
 . common.sh
 
-container_cmake --configure ..
+container_cmake -DCMAKE_BUILD_TYPE=Release --configure ..
 container_make fib
 
 ssh -t "${EV3_USER}@${EV3_ADDRESS}" "mkdir ~/cfib"

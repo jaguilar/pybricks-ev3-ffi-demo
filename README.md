@@ -32,16 +32,14 @@ This project is not supported. I've only tried it on Ubuntu Linux in WSL2.
 
 On my EV3 brick:
 
-
-
 | Implementation  | Time  |
 |-----------------|-------|
 | Python          | 155ms |
-| C               |  12ms |
+| C               |   6ms |
 
 Given that micropython's Viper code generator is said to be ~4x as fast as plain 
 micropython, this suggests that writing in C can give you approximately an 
-additional 4x speedup compared to Viper. Probably the exact speedup depends on the
+additional 8x speedup compared to Viper. Probably the exact speedup depends on the
 project.
 
 ## Next Steps
