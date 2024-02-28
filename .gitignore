@@ -1,3 +1,8 @@
 /.secrets.sh
-
-
+/CMakeFiles
+/bin
+/lib
+/CMakeCache.txt
+/Makefile
+/cmake_install.cmake
+/ev3build*

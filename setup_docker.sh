@@ -6,14 +6,10 @@
 # CR_PAT: a github personal access token with at least packages:read
 #         permissions. Create one here: https://github.com/settings/tokens
 # GITHUB_USERNAME: your username on github
-if [ -e ./.secrets.sh ]; then
-  . ./.secrets.sh
-fi
 
-echo "$CR_PAT" | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin
+. ./common.sh
 
-IMAGE_NAME="ghcr.io/pybricks/pybricks-micropython/pybricks-ev3dev-armel:latest"
-CONTAINER_NAME="ev3build"
+echo "$GH_TOKEN" | docker login ghcr.io -u "$GH_USERNAME" --password-stdin
 
 # Note that we pull this image rather than building from source, because Debian's
 # stretch repositories are no longer available and it is no longer possible to
