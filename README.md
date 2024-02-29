@@ -5,21 +5,20 @@ on the Lego EV3 system with Pybricks. This example project takes you
 through all the steps of getting the `ffi` module working on pybricks
 on EV3.
 
-This project is not supported. I've only tried it on Ubuntu Linux in WSL2.
+This project is not supported. The current version seems to work fine
+on a Raspberry Pi 4 build host connected to an EV3 via bluetooth.
 
 ## Requirements
 
 * SSH/SCP
 * Python
-* Docker
+* `arm-linux-gnueabi-gcc` and `arm-linux-gnueabi-gcc` are on `PATH`
 
 ## Tour
 
 * `common.sh` contains common functions and definitions used throughout
   the project to build the example code. It also contains hacks for
-  working out of WSL.
-* `demo_helloworld.sh` shows the steps for cross-compiling a hello_world
-  C program and running it on the toolchain container itself.
+  working out of WSL, which I did in a previous version of this work.
 * `demo_helloworld_ev3.sh` takes the previous example a step further
   and demonstrates the program running on the EV3 brick.
 * `demo_pyfib_ev3.sh` demonstrates running some simple Fibonacci sequence 
@@ -45,7 +44,6 @@ project.
 ## Next Steps
 
 * C++?
-* Statically link the shared libary to avoid deps?
 * Optimizer flags?
 
 ## Conclusion

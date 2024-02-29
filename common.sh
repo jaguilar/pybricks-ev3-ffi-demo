@@ -21,20 +21,21 @@ export CONTAINER_NAME="ev3build"
 
 
 # Runs a command inside the container.
-docker exec -w /src -it "${CONTAINER_NAME}" bash -c "find . | grep ev3build | xargs rm -rf"
+find . | grep ev3build | xargs rm -rf
 
 # Note: BUILD_DIR is in the docker container, not the host.
 export BUILD_DIRNAME="$(mktemp -d ev3build.XXXXXX)"
 export BUILD_LOCAL="$(pwd)/${BUILD_DIRNAME}"
 export BUILD_DIR="/src/${BUILD_DIRNAME}"
-echo "Building in $BUILD_DIR"
 
-container_cmake () {
-    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" cmake -DCMAKE_TOOLCHAIN_FILE=/home/compiler/toolchain-armel.cmake "$@"
+armel_cmake () {
+    ( cd $BUILD_LOCAL && cmake -DCMAKE_TOOLCHAIN_FILE=../armel.cmake "$@" )
+    # docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" cmake -DCMAKE_TOOLCHAIN_FILE=/home/compiler/toolchain-armel.cmake "$@"
 }
 
-container_make () {
-    docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" make "$@"
+armel_make () {
+    ( cd $BUILD_LOCAL && make "$@" )
+    # docker exec -w "${BUILD_DIR}" --tty "${CONTAINER_NAME}" make "$@"
 }
 
 # If we're running in WSL2:
