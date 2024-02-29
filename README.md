@@ -12,7 +12,7 @@ on a Raspberry Pi 4 build host connected to an EV3 via bluetooth.
 
 * SSH/SCP
 * Python
-* `arm-linux-gnueabi-gcc` and `arm-linux-gnueabi-gcc` are on `PATH`
+* `arm-linux-gnueabi-gcc` and `arm-linux-gnueabi-g++` are on `PATH`
 
 ## Tour
 
